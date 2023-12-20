@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagetitle %} | {{ detail.title }}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="frame">
+        <a href="{% url redirect %}" class="close">&#8634;</a>
+        <div class="title">{{ detail.title }}</div>
+        <div class="labels">{{ detail.labels }}</div>
+        {{ detail.content | safe }}
+
+        <div class="images">
+            {% for image in detail.images %}
+            <img src="{% static 'media/'|add:image %}" id="{{forloop.counter}}" onclick="lightbox(this)">
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+<div class="lightbox" onclick="next_image()">
+    <div class="close_button" onclick="close_lightbox()">&times;</div>
+</div>
+
+<script>
+    current = '';
+    function close_lightbox() {
+        document.getElementsByClassName("lightbox")[0].style.display = "none";
+    }
+
+    function lightbox(img) {
+        current = img;
+        document.getElementsByClassName("lightbox")[0].style.display = "flex";
+        document.getElementsByClassName("lightbox")[0].style.backgroundImage = "url('" + current.src + "')";
+    }
+
+    function next_image() {
+        if (document.getElementById(current.id).nextElementSibling) {
+            nxt = document.getElementById(current.id).nextElementSibling;
+        }
+        else {
+            nxt = document.getElementById('1');
+        }
+        current = nxt;
+        document.getElementsByClassName("lightbox")[0].style.backgroundImage = "url('" + nxt.src + "')";
+    }
+</script>
+{% endblock %}

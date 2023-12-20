@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %} | {{ pagetitle }}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <form class="grid contact" name="f1" action="{% url 'contact' %}" method="POST">
+        {% csrf_token %}
+        <div class="left contact">
+            <div class="title">Send me a message</div>
+            <label for="fullname">Full Name</label>
+            <input name="fullname" id="fullname" type="text">
+            <label for="company">Company</label>
+            <input name="company" id="company" type="text">
+            <label for="email">Email</label>
+            <input name="email" id="email" type="email">
+            <label for="subject">Subject</label>
+            <input name="subject" id="subject" type="text">
+        </div>
+        <div class="right contact">
+            <label for="message">Message</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <!-- <div class="g-recaptcha captcha" data-callback="recaptchaCallback"
+                data-sitekey="6LdHtHIbAAAAALYWwIjpcflbR7K5EgKYhnLFAz41"></div> -->
+            <button type="submit" id="submit">Send Message</button>
+        </div>
+    </form>
+
+</div>
+
+{% if alert %}
+<script>alert("{{alert}}");</script>
+{% endif %}
+
+{% endblock %}

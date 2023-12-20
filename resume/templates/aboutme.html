@@ -1,0 +1,30 @@
+{% load static %}
+
+<div class="section">
+    <div class="left about-me">
+        <img src="{% static 'my-photo.jpeg' %}" alt="" class="my-photo">
+    </div>
+    <div class="right about-me">
+        <div class="title">Computer Engineer</div>
+        <div class="name">Zeydan Kapılı</div>
+        <div class="description">
+            <p>As an individual, I am constantly seeking new ways to grow and develop, both personally and
+                professionally. I am always on the lookout for new opportunities to learn and expand my skillset, and I
+                am committed to taking on new challenges that push me outside of my comfort zone. I approach life with
+                an open-minded perspective and a willingness to explore new ideas and ways of thinking. I believe that
+                by remaining curious and adaptable, I can continue to learn and grow throughout my life.</p>
+            <p>I believe that every job presents unique challenges and opportunities for growth, and I approach each new
+                role with a willingness to learn and to apply what I have learned to other areas of my life. By seeking
+                out new challenges and opportunities, I am able to continuously develop my skills and knowledge, and to
+                expand my horizons in ways that allow me to achieve my full potential.</p>
+        </div>
+        <div class="buttons">
+            <a href="{% static 'docs/ZEYDAN_KAPILI_CV(09.05.2023).pdf' %}" target="_blank">
+                <div class="download-button">Download CV</div>
+            </a>
+            <a href="{% url 'contact' %}">
+                <div class="contact-button">Contact</div>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block pagetitle %} | {{ pagetitle }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="filter">
+        <div class="frame">
+            {% for filter in filters %}
+                <div href="#" onclick="filter('{{filter}}')" class="item">{{filter}}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="cards">
+        <div class="frame">
+            <div class="grid">
+                {% for card in cards %}
+                    <a href="{% url 'portfolio' %}{{card.unique_title}}" class="card">
+                        <img src="{% static 'media/'|add:card.cover_image %}">
+                        <div class="title">{{card.title}}</div>
+                        <div class="labels">{{card.labels}}</div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function filter(tag) {
+        for (const div of document.querySelectorAll('.labels')) {
+            if (tag == "All"){
+                div.parentElement.style.display = 'flex';
+            }else{
+                if (div.textContent.includes(tag)) {
+                    div.parentElement.style.display = 'flex';
+                } else {
+                    div.parentElement.style.display = 'none';
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}

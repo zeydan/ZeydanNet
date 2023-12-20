@@ -1,0 +1,49 @@
+{% load static %}
+
+<nav>
+    <div class="frame">
+        <div class="left">
+            <a href="{% url 'home' %}" class="logo"><img src="{% static 'zk.svg' %}" alt=""></a>
+            <a href="{% url 'home' %}" class="my_name"><b>Zeydan</b> Kapılı</a>
+        </div>
+        <div class="right">
+            <menu>
+                <a class="item" href="{% url 'home' %}">Home</a>
+                <!-- <a class="item" href="/blog">Blog</a> -->
+                <a class="item" href="{% url 'portfolio' %}">Portfolio</a>
+                <a class="item" href="{% url 'resume' %}">Resume</a>
+                <a class="item" href="{% url 'contact' %}">Contact</a>
+            </menu>
+
+            <div onclick="toggle_button()" class="menu-button">
+                <div class="menu-icon">+</div>
+            </div>
+            <div class="dropdown">
+                <div class="item"><a href="{% url 'home' %}">Home</a></div>
+                <!-- <div class="item"><a href="/blog">Blog</a></div> -->
+                <div class="item"><a href="{% url 'portfolio' %}">Portfolio</a></div>
+                <div class="item"><a href="{% url 'resume' %}">Resume</a></div>
+                <div class="item"><a href="{% url 'contact' %}">Contact</a></div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    button_state = 0;
+    
+    function toggle_button() {
+        if (button_state == 0) {
+            button_state = 1;
+            document.getElementsByClassName("dropdown")[0].style.height = "160px";
+            document.getElementsByClassName("dropdown")[0].style.border = "2px solid var(--dark-grey)";
+            document.getElementsByClassName("menu-icon")[0].style.transform = "rotate(405deg)"
+        } else {
+            button_state = 0;
+            document.getElementsByClassName("dropdown")[0].style.height = "0px";
+            document.getElementsByClassName("dropdown")[0].style.border = "none";
+            document.getElementsByClassName("menu-icon")[0].style.transform = "rotate(0deg)"
+        }
+    }
+
+</script>
